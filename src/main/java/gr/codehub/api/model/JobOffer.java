@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -25,8 +26,12 @@ public class JobOffer {
     @JsonIgnore
     private Company company;
 
-   /* @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="applicant_id")
     @JsonIgnore
-    private Applicant applicant;*/
+    private Applicant applicant;
+
+//    @OneToMany(mappedBy="jobOffer", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<SkillFromRecrume> skillFromRecrumes;
+
 }
