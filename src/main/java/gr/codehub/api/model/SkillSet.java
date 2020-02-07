@@ -6,33 +6,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class JobOffer {
+public class SkillSet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String jobOfferName;
-    private Date dateOfOffer;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="company_id")
-    @JsonIgnore
-    private Company company;
+//    @OneToMany(mappedBy="skillSet", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<Applicant> applicants;
+//
+//    @OneToMany(mappedBy="skillSet", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<SkillFromRecrume> skillFromRecrumes;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="applicant_id")
     @JsonIgnore
     private Applicant applicant;
 
-    //----------------------------------------------------------
-    @OneToMany(mappedBy="jobOffer", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<SkillSetForJobOffer> skillSetForJobOffers;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="skill_from_recrume_id")
+    @JsonIgnore
+    private SkillFromRecrume skillFromRecrume;
 
 }

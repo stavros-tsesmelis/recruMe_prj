@@ -30,7 +30,7 @@ public class Applicant {
     @OneToMany(mappedBy="applicant", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     private List<JobOffer> jobOffers;
 
-//    @OneToMany(mappedBy="applicant", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-//    private List<SkillFromRecrume> skillFromRecrumes;
 
+    @OneToMany(mappedBy="applicant", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<SkillSet> skillSets;
 }

@@ -14,12 +14,19 @@ insert into job_offer([job_offer_name],[date_of_offer],[company_id],[applicant_i
 insert into job_offer([job_offer_name],[date_of_offer],[company_id],[applicant_id]) values ('java_developerSSSS', '1970-02-01', 1, 3)
 insert into job_offer([job_offer_name],[date_of_offer],[company_id],[applicant_id]) values ('developerSSSS', '1970-02-01', 3, 4)
 
---insert into job_offer([job_offer_name],[date_of_offer],[company_id], [applicant_id]) values ('java developer', '1970-02-01', 1, 3)
---insert into job_offer([job_offer_name],[date_of_offer],[company_id], [applicant_id]) values ('java developer', '1970-02-01', 1, 5)
+insert into skill_from_recrume([skill_name]) values ('hard_worker')
+insert into skill_from_recrume([skill_name]) values ('java_developer')
+
+insert into skill_set([applicant_id], [skill_from_recrume_id]) values (1, 2)
+insert into skill_set([applicant_id], [skill_from_recrume_id]) values (5, 2)
+insert into skill_set([applicant_id], [skill_from_recrume_id]) values (1, 2)
+insert into skill_set([applicant_id], [skill_from_recrume_id]) values (3, 1)
+insert into skill_set([applicant_id], [skill_from_recrume_id]) values (4, 2)
 
 
---insert into skill_from_recrume([skill_name], [applicant_id], [job_offer_id]) values ('hard-worker', 1, 3)
---insert into skill_from_recrume([skill_name], [applicant_id], [job_offer_id]) values ('java developer', 2, 3)
---
---insert into skill_from_recrume([skill_name]) values ('kalos')
---insert into skill_from_recrume([skill_name]) values ('kakoooosss')
+insert into skill_set_for_job_offer([job_offer_id], [skill_from_recrume_id]) values (1, 2)
+insert into skill_set_for_job_offer([job_offer_id], [skill_from_recrume_id]) values (2, 2)
+insert into skill_set_for_job_offer([job_offer_id], [skill_from_recrume_id]) values (1, 2)
+insert into skill_set_for_job_offer([job_offer_id], [skill_from_recrume_id]) values (3, 1)
+insert into skill_set_for_job_offer([job_offer_id], [skill_from_recrume_id]) values (4, 2)
+

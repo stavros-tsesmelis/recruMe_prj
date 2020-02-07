@@ -1,6 +1,8 @@
 package gr.codehub.api.controller;
 
 //import gr.codehub.api.dto.ApplicantDTO;
+import gr.codehub.api.dto.ApplicantDTO;
+import gr.codehub.api.dto.SkillFromRecrumeDTO;
 import gr.codehub.api.model.Applicant;
 import gr.codehub.api.model.Company;
 import gr.codehub.api.model.JobOffer;
@@ -39,11 +41,16 @@ public class ControllerRestful {
         Optional<List<Applicant>> applicants = ajsService.getApplicantByRegionFromDB(region);
         return applicants;
     }
-//
-//    @GetMapping("skills")
-//    public List<SkillFromRecrume> getAllSkills() {
-//        return ajsService.getAllSkillsFromDB();
-//    }
+
+    @GetMapping("skillFromRecrume")
+    public List<SkillFromRecrume> getAllSkills() {
+        return ajsService.getAllSkillsFromDB();
+    }
+
+    @GetMapping("skillFromRecrume/{id}")
+    public SkillFromRecrume getSkill(@PathVariable int id) {
+        return ajsService.getSkillByIdFromDB(id);
+    }
 
     @GetMapping("joboffers")
     public List<JobOffer> getAllJobOffers(){
@@ -63,6 +70,18 @@ public class ControllerRestful {
     public JobOffer getJobOfferByName(@PathVariable String name) {
         JobOffer offer =  ajsService.getJobOfferByNameFromDB(name);
         return offer;
+    }
+
+    @GetMapping("joboffers/skillFromRecrume/{skill}")
+    public List<JobOffer> getJobOffersBySkill(@PathVariable String skill) {
+        List<JobOffer> offer =  ajsService.getJobOffersBySkillFromDB(skill);
+        return offer;
+    }
+
+    @GetMapping("applicants/skillFromRecrume/{skill}")
+    public List<Applicant> getApplicantsBySkill(@PathVariable String skill) {
+        List<Applicant> applicants =  ajsService.getApplicantsBySkillFromDB(skill);
+        return applicants;
     }
 //    @GetMapping("joboffer/{date}")
 //    public JobOffer getJobOfferByDate(@PathVariable Date date){
@@ -90,8 +109,13 @@ public class ControllerRestful {
         return companies;
     }
 
-//    @PostMapping("newApplicant")
-//    public Applicant newApplicant(@RequestBody ApplicantDTO applicantDTO) {
-//        return ajsService.save(applicantDTO);
-//    }
+    @PostMapping("newApplicant")
+    public Applicant newApplicant(@RequestBody ApplicantDTO applicantDTO) {
+        return ajsService.save(applicantDTO);
+    }
+
+    @PostMapping("newSkillFromRecrume")
+    public SkillFromRecrume newSkill(@RequestBody SkillFromRecrumeDTO skillFromRecrumeDTO) {
+        return ajsService.save(skillFromRecrumeDTO);
+    }
 }

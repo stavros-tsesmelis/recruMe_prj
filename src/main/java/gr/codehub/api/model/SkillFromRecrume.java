@@ -19,14 +19,16 @@ public class SkillFromRecrume {
     private String skillName;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name="job_offer_id")
+//    @JoinColumn(name="skill_set_id")
 //    @JsonIgnore
-//    private JobOffer jobOffer;
-//
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name="applicant_id")
-//    @JsonIgnore
-//    private Applicant applicant;
+//    private SkillSet skillSet;
 
+    @OneToMany(mappedBy="skillFromRecrume", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<SkillSet> skillSets;
+
+
+    //----------------------------------------------------------
+    @OneToMany(mappedBy="skillFromRecrume", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<SkillSetForJobOffer> skillSetForJobOffers;
 
 }
