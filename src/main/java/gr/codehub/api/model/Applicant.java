@@ -33,4 +33,9 @@ public class Applicant {
 
     @OneToMany(mappedBy="applicant", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
     private List<SkillSet> skillSets;
+
+
+    //----------------------------------------------------------
+//    @OneToOne(mappedBy = "matcher")
+//    private Matcher matcher;
 }

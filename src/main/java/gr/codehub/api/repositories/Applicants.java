@@ -14,6 +14,8 @@ import java.util.Optional;
 public interface Applicants extends JpaRepository<Applicant, Integer> {
     Applicant findById(int id);
 
+    Applicant findFirstById(int id);
+
     @Query(value = "SELECT *  FROM applicant WHERE last_name = :lastName", nativeQuery = true)
     Applicant findByName(@Param("lastName") String name);
 

@@ -21,6 +21,8 @@ public interface JobOffers extends JpaRepository<JobOffer, Integer> {
     @Query(value = "SELECT *  FROM job_offer WHERE job_offer_name = :name", nativeQuery = true)
     JobOffer findByName(@Param("name") String name);
 
+    JobOffer findFirstById(int job_offer_id);
+
 
 //    @Query(value = "SELECT job_offer_name FROM job_offer WHERE id = (SELECT job_offer_id FROM skill_set_for_job_offer WHERE skill_from_recrume_id = (SELECT id FROM  skill_from_recrume WHERE skill_name = :name))", nativeQuery = true)
 //    Optional<List<JobOffer>> findBySkill(String skill);

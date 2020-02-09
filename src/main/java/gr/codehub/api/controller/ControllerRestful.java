@@ -1,12 +1,9 @@
 package gr.codehub.api.controller;
 
 //import gr.codehub.api.dto.ApplicantDTO;
-import gr.codehub.api.dto.ApplicantDTO;
-import gr.codehub.api.dto.SkillFromRecrumeDTO;
-import gr.codehub.api.model.Applicant;
-import gr.codehub.api.model.Company;
-import gr.codehub.api.model.JobOffer;
-import gr.codehub.api.model.SkillFromRecrume;
+import gr.codehub.api.dto.*;
+import gr.codehub.api.exception.ApplicantNotFoundException;
+import gr.codehub.api.model.*;
 import gr.codehub.api.service.AJSService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +19,12 @@ public class ControllerRestful {
     private AJSService ajsService;
 
     @GetMapping("applicants")
-    public List<Applicant> getAllApplicants() {
+    public List<Applicant> getAllApplicants()  {
         return ajsService.getAllApplicantsFromDB();
     }
 
     @GetMapping("applicant/{id}")
-    public Applicant getAllApplicantById(@PathVariable int id) {
+    public Applicant getAllApplicantById(@PathVariable int id) { //throws ApplicantNotFoundException {
         return ajsService.getApplicantFromDB(id);
     }
 
@@ -108,6 +105,15 @@ public class ControllerRestful {
         //----> Skills.Java.setSkillToDB();
         return companies;
     }
+//---------------------------------------------------------------------------------------------------------------------
+    @GetMapping("companies/{nameOfCompany}/joboffer/{nameOfJob}")
+    public List<JobOffer> getJobOffersFromACompany(@PathVariable String nameOfCompany, @PathVariable String nameOfJob){
+        List<JobOffer> jobOffers = ajsService.getJobOfferOfACompany(nameOfCompany, nameOfJob);
+        //System.out.println(offer);
+        //----> Skills.Java.setSkillToDB();
+        return jobOffers;
+    }
+//---------------------------------------------------------------------------------------------------------------------
 
     @PostMapping("newApplicant")
     public Applicant newApplicant(@RequestBody ApplicantDTO applicantDTO) {
@@ -118,4 +124,30 @@ public class ControllerRestful {
     public SkillFromRecrume newSkill(@RequestBody SkillFromRecrumeDTO skillFromRecrumeDTO) {
         return ajsService.save(skillFromRecrumeDTO);
     }
+
+
+    @PostMapping("newJobOffer")
+    public JobOffer newJobOffer(@RequestBody JobOfferDTO jobOfferDTO) {
+        return ajsService.save(jobOfferDTO);
+    }
+
+    @PostMapping("skillset")
+    public SkillSet createSkillForApplicant(@RequestBody SkillSetDTO skillSetDTO) throws Exception {
+        return ajsService.createSkillSet(skillSetDTO);
+    }
+
+    @PostMapping("skillsetforjoboffer")
+    public SkillSetForJobOffer createSkillForJobOffer(@RequestBody SkillSetForJobOfferDTO skillSetForJobOfferDTO) throws Exception {
+        return ajsService.createSkillSetForJobOffer(skillSetForJobOfferDTO);
+    }
+
+    @PostMapping("newcompany")
+    public Company createCompany(@RequestBody CompanyDTO companyDTO) throws Exception {
+        return ajsService.createNewCompany(companyDTO);
+    }
+
+//    @PostMapping("skillFromRecrume/{name1}/{name2}")
+//    public SkillFromRecrume createMergeForSkills(@RequestBody SkillFromRecrumeDTO skillFromRecrumeDTO1, @RequestBody SkillFromRecrumeDTO skillFromRecrumeDTO2){
+//        return ajsService.createNewMergeSkillFromRecrume(skillFromRecrumeDTO1, skillFromRecrumeDTO2);
+//    }
 }

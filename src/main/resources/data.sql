@@ -30,3 +30,5 @@ insert into skill_set_for_job_offer([job_offer_id], [skill_from_recrume_id]) val
 insert into skill_set_for_job_offer([job_offer_id], [skill_from_recrume_id]) values (3, 1)
 insert into skill_set_for_job_offer([job_offer_id], [skill_from_recrume_id]) values (4, 2)
 
+
+
