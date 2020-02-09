@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface SkillSetForJobOffers extends JpaRepository<SkillSetForJobOffer, Integer> {
+public interface SkillSetForJobOfferRepository extends JpaRepository<SkillSetForJobOffer, Integer> {
     @Query(value = "SELECT *  FROM skill_set_for_job_offer WHERE skill_from_recrume_id = :skill", nativeQuery = true)
     Optional<List<JobOffer>> findAllBySkillFromRecrume(@Param("skill") String skill);
 }

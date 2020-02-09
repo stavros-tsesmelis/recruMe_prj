@@ -3,7 +3,6 @@ package gr.codehub.api.service;
 //import gr.codehub.api.dto.ApplicantDTO;
 
 import gr.codehub.api.dto.*;
-import gr.codehub.api.exception.ApplicantNotFoundException;
 import gr.codehub.api.model.*;
 import gr.codehub.api.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,25 +13,25 @@ import java.util.*;
 @Service
 public class AJSService {
     @Autowired
-    private Applicants applicantsRepo;
+    private ApplicantRepository applicantsRepo;
 
     @Autowired
-    private Companies companiesRepo;
+    private CompanyRepository companiesRepo;
 
     @Autowired
-    private JobOffers jobOffersRepo;
+    private JobOfferRepository jobOffersRepo;
 
     @Autowired
-    private SkillFromRecrumes skillFromRecrumeRepo;
+    private SkillFromRecrumeRepository skillFromRecrumeRepo;
 
     @Autowired
-    private SkillSetForJobOffers skillSetForJobOffers;
+    private SkillSetForJobOfferRepository skillSetForJobOffers;
 
     @Autowired
-    private SkillSets skillSetsRepo;
+    private SkillSetRepository skillSetsRepo;
 
     @Autowired
-    private SkillSetForJobOffers skillSetForJobOffersRepo;
+    private SkillSetForJobOfferRepository skillSetForJobOffersRepo;
 
     public List<Company> getCompanies() {
         return companiesRepo.findAll();
@@ -203,6 +202,19 @@ public class AJSService {
         company.setCompanyName(companyDTO.getCompanyName());
         company.setRegion(companyDTO.getRegion());
         return companiesRepo.save(company);
+    }
+
+    public SkillFromRecrume updateOne(int id, SkillFromRecrumeDTO skillFromRecrumeDTO) {
+        SkillFromRecrume skillFromRecrume = skillFromRecrumeRepo.findById(id);
+        if (skillFromRecrumeDTO.getSkillName() != null)    skillFromRecrume.setSkillName(skillFromRecrumeDTO.getSkillName());
+        return skillFromRecrumeRepo.save(skillFromRecrume);
+    }
+
+    public String softDelete(int id) {
+        SkillFromRecrume skillFromRecrume = skillFromRecrumeRepo.findById(id);
+        skillFromRecrume.setActive(false);
+        skillFromRecrumeRepo.save(skillFromRecrume);
+        return "ok";
     }
 
 //    public SkillFromRecrume createNewMergeSkillFromRecrume(SkillFromRecrumeDTO skillFromRecrumeDTO1, SkillFromRecrumeDTO skillFromRecrumeDTO2) {

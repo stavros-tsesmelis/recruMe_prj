@@ -13,4 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 public class SkillFromRecrumeDTO {
     private String skillName;
+
+    private boolean active;
 }

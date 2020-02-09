@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface JobOffers extends JpaRepository<JobOffer, Integer> {
+public interface JobOfferRepository extends JpaRepository<JobOffer, Integer> {
    // JobOffer findFirstByCompanyId(int id);
    //H grammh 14 me tis grammes 16, 17 einai idies.
    @Query(value = "SELECT *  FROM job_offer WHERE id = :id", nativeQuery = true)

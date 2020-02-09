@@ -15,6 +15,9 @@ public class Matcher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(columnDefinition = "bit default 0")
+    private boolean notFinalized;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "applicant_id", referencedColumnName = "id")
     private Applicant applicant;

@@ -18,10 +18,8 @@ public class SkillFromRecrume {
     private int id;
     private String skillName;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name="skill_set_id")
-//    @JsonIgnore
-//    private SkillSet skillSet;
+    @Column(columnDefinition = "bit default 1")
+    private boolean active;
 
     @OneToMany(mappedBy="skillFromRecrume", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
     private List<SkillSet> skillSets;
@@ -30,5 +28,14 @@ public class SkillFromRecrume {
     //----------------------------------------------------------
     @OneToMany(mappedBy="skillFromRecrume", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
     private List<SkillSetForJobOffer> skillSetForJobOffers;
+
+
+//    @Override
+    public boolean equal(SkillFromRecrume applicantSkill) {
+        if (this == applicantSkill) return true;
+        if (!(applicantSkill instanceof SkillFromRecrume)) return false;
+        SkillFromRecrume skillFromRecrume = (SkillFromRecrume) applicantSkill;
+        return getSkillName().equals(skillFromRecrume.getSkillName());
+    }
 
 }

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface Applicants extends JpaRepository<Applicant, Integer> {
+public interface ApplicantRepository extends JpaRepository<Applicant, Integer> {
     Applicant findById(int id);
 
     Applicant findFirstById(int id);

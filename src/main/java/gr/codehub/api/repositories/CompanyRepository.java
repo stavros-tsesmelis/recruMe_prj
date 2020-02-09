@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface Companies extends JpaRepository<Company, Integer> {
+public interface CompanyRepository extends JpaRepository<Company, Integer> {
     Company findFirstByRegion(String region);
 
     Optional<List<Company>> findAllByRegion(String region);

@@ -150,4 +150,21 @@ public class ControllerRestful {
 //    public SkillFromRecrume createMergeForSkills(@RequestBody SkillFromRecrumeDTO skillFromRecrumeDTO1, @RequestBody SkillFromRecrumeDTO skillFromRecrumeDTO2){
 //        return ajsService.createNewMergeSkillFromRecrume(skillFromRecrumeDTO1, skillFromRecrumeDTO2);
 //    }
+
+    @PutMapping("skillFromRecrume/{id}")
+    public SkillFromRecrume updateOne(@PathVariable int id, @RequestBody SkillFromRecrumeDTO skillFromRecrumeDTO){
+        return ajsService.updateOne(id, skillFromRecrumeDTO);
+    }
+
+    @PutMapping("skillFromRecrume/inactive/{id}")
+    public String softDelete( @PathVariable int id) {
+        return ajsService.softDelete(id);
+    }
+
+
+//    @DeleteMapping("customer/{id}" )
+//    public String deleteCustomer(@PathVariable int id)
+//            throws CustomerNotFoundException {
+//        return customerService.delete(id);
+//    }
 }
